@@ -5,7 +5,7 @@ public class Main {
 
     public static Scanner keyboard = new Scanner(System.in);
 
-    public static void printMenu(){
+    public static void printMenu() {
         System.out.println("\nWelcome to the book database!\n" +
                 "Choose an option to proceed:\n" +
                 "1 - print books with long description\n" +
@@ -21,14 +21,14 @@ public class Main {
                 "0 - exit the program\n");
     }
 
-    public static int askAction(){
+    public static int askAction() {
         int currentAction = keyboard.nextInt();
         keyboard.nextLine();
         return currentAction;
     }
 
     public static boolean doAction(int currentAction) throws IOException {
-        switch (currentAction){
+        switch (currentAction) {
             case 1:
                 Collection.printAll();
                 break;
@@ -65,14 +65,14 @@ public class Main {
         return true;
     }
 
-    public static int askIndexToRemove(){
+    public static int askIndexToRemove() {
         System.out.println("Please, type the index of a book you want to remove: ");
         int indexToRemove = keyboard.nextInt();
         keyboard.nextLine();
         return indexToRemove;
     }
 
-    public static Book askBook(){
+    public static Book askBook() {
 
         System.out.print("Please, enter the title of the book: ");
         String bookTitle = keyboard.nextLine();
@@ -97,7 +97,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         boolean shouldContinue = true;
-        while (shouldContinue){
+        while (shouldContinue) {
             printMenu();
             shouldContinue = doAction(askAction());
         }

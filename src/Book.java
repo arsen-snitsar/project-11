@@ -6,7 +6,7 @@ public class Book {
     private int yearWhenPublished;
     private double priceInDollars;
 
-    public Book(String title, String authorName, String authorSurname, int yearWhenPublished, double priceInDollars){
+    public Book(String title, String authorName, String authorSurname, int yearWhenPublished, double priceInDollars) {
         this.title = title;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
@@ -14,42 +14,47 @@ public class Book {
         this.priceInDollars = priceInDollars;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
-    public void setTitle(String title){
+
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getAuthorName(){
+    public String getAuthorName() {
         return authorName;
     }
-    public void setAuthorName(String authorName){
+
+    public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
-    public String getAuthorSurname(){
+    public String getAuthorSurname() {
         return authorSurname;
     }
-    public void setAuthorSurname(String authorSurname){
+
+    public void setAuthorSurname(String authorSurname) {
         this.authorSurname = authorSurname;
     }
 
-    public int getYearWhenPublished(){
+    public int getYearWhenPublished() {
         return yearWhenPublished;
     }
-    public void setYearWhenPublished(int yearWhenPublished){
+
+    public void setYearWhenPublished(int yearWhenPublished) {
         this.yearWhenPublished = yearWhenPublished;
     }
 
-    public double getPriceInDollars(){
+    public double getPriceInDollars() {
         return priceInDollars;
     }
-    public void setPriceInDollars(double price){
+
+    public void setPriceInDollars(double price) {
         this.priceInDollars = price;
     }
 
-    public double getPriceInOtherCurrency(String currency){
+    public double getPriceInOtherCurrency(String currency) {
         return switch (currency) {
             case "UAH" -> priceInDollars * 36.9;
             case "EUR" -> priceInDollars * 0.94;
@@ -61,17 +66,17 @@ public class Book {
         };
     }
 
-    public String getLongDesc(){
+    public String getLongDesc() {
         return "A book called \"" + getTitle()
                 + "\" was published by " + getAuthorName()
                 + " " + getAuthorSurname() +
                 " in the year of " + getYearWhenPublished()
                 + "\nCurrently, the book costs " + getPriceInDollars() + " USD on Amazon,\n"
                 + "or " + getPriceInOtherCurrency("UAH")
-                + " if converting to "+ "UAH" +" (shipment price not included)\n";
+                + " if converting to " + "UAH" + " (shipment price not included)\n";
     }
 
-    public String getShortDesc(){
+    public String getShortDesc() {
         return "\"" + getTitle() + "\" " + getAuthorName().charAt(0) + ". " + getAuthorSurname();
     }
 

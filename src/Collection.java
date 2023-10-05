@@ -11,23 +11,22 @@ public class Collection {
     public static Scanner keyboard = new Scanner(System.in);
 
     private static int count = 0;
-    private static Book [] arrayOfBooks = new Book[0];
+    private static Book[] arrayOfBooks = new Book[0];
 
-    public static void addBook(Book bookToAdd){
-        arrayOfBooks = Arrays.copyOf(arrayOfBooks, count+1);
+    public static void addBook(Book bookToAdd) {
+        arrayOfBooks = Arrays.copyOf(arrayOfBooks, count + 1);
         arrayOfBooks[count] = bookToAdd;
         count++;
     }
 
-    public static void remove(int indexToRemove){
+    public static void remove(int indexToRemove) {
         count--;
-        Book [] arrayToReturn = new Book[arrayOfBooks.length-1];
+        Book[] arrayToReturn = new Book[arrayOfBooks.length - 1];
         Boolean removedElement = false;
         for (int i = 0; i < count; i++) {
-            if (i != indexToRemove && !removedElement){
+            if (i != indexToRemove && !removedElement) {
                 arrayToReturn[i] = arrayOfBooks[i];
-            }
-            else{
+            } else {
                 removedElement = true;
                 arrayToReturn[i] = arrayOfBooks[i + 1];
             }
@@ -35,79 +34,79 @@ public class Collection {
         arrayOfBooks = arrayToReturn;
     }
 
-    public static void printOneLong(int i){
+    public static void printOneLong(int i) {
         System.out.println(arrayOfBooks[i].getLongDesc());
     }
-    public static void printOneShort(int i){
+
+    public static void printOneShort(int i) {
         System.out.println(arrayOfBooks[i].getShortDesc());
     }
 
-    public static void printAll(){
+    public static void printAll() {
         for (int i = 0; i < arrayOfBooks.length; i++) {
-            System.out.println (arrayOfBooks[i].getLongDesc());
+            System.out.println(arrayOfBooks[i].getLongDesc());
         }
     }
 
-    public static void printList(){
+    public static void printList() {
         for (int i = 0; i < arrayOfBooks.length; i++) {
             System.out.println((i + 1) + ". " + arrayOfBooks[i].getShortDesc());
         }
     }
 
-    public static void bubbleSort(boolean isSortByYear){
+    public static void bubbleSort(boolean isSortByYear) {
         boolean isSorted;
         int i = 0;
         do {
             isSorted = true;
             for (int j = 1; j < count - i; j++) {
-                if (isSortByYear){
-                    if (arrayOfBooks[j].getYearWhenPublished() < arrayOfBooks[j-1].getYearWhenPublished()){
+                if (isSortByYear) {
+                    if (arrayOfBooks[j].getYearWhenPublished() < arrayOfBooks[j - 1].getYearWhenPublished()) {
                         swap(arrayOfBooks, j);
                         isSorted = false;
                     }
-                }
-                else{
-                    if (arrayOfBooks[j].getPriceInDollars() < arrayOfBooks[j-1].getPriceInDollars()){
+                } else {
+                    if (arrayOfBooks[j].getPriceInDollars() < arrayOfBooks[j - 1].getPriceInDollars()) {
                         swap(arrayOfBooks, j);
                         isSorted = false;
                     }
                 }
             }
             i++;
-        }while (!isSorted);
+        } while (!isSorted);
     }
 
-    public static void swap(Book [] arrayWhereSwap, int indexToSwap){
+    public static void swap(Book[] arrayWhereSwap, int indexToSwap) {
         Book temporaryVault = arrayWhereSwap[indexToSwap];
-        arrayWhereSwap[indexToSwap] = arrayWhereSwap[indexToSwap-1];
-        arrayWhereSwap[indexToSwap-1] = temporaryVault;
+        arrayWhereSwap[indexToSwap] = arrayWhereSwap[indexToSwap - 1];
+        arrayWhereSwap[indexToSwap - 1] = temporaryVault;
     }
 
-    public static void searchByAuthor(){
+    public static void searchByAuthor() {
         System.out.println("Please, enter author you are willing to search for: ");
         String stringToSearch = keyboard.nextLine();
         for (int i = 0; i < count; i++) {
             if ((arrayOfBooks[i].getAuthorSurname().toLowerCase().contains(stringToSearch.toLowerCase()))
-            || (arrayOfBooks[i].getAuthorName().toLowerCase().contains(stringToSearch.toLowerCase()))) {
+                    || (arrayOfBooks[i].getAuthorName().toLowerCase().contains(stringToSearch.toLowerCase()))) {
                 System.out.print((i + 1) + ". ");
                 printOneShort(i);
             }
         }
     }
 
-    public static void searchByYear(){
+    public static void searchByYear() {
         System.out.println("Please, enter the year of publication you are willing to search for: ");
         int yearToSearch = keyboard.nextInt();
         keyboard.nextLine();
         for (int i = 0; i < count; i++) {
-            if (arrayOfBooks[i].getYearWhenPublished() == yearToSearch){
+            if (arrayOfBooks[i].getYearWhenPublished() == yearToSearch) {
                 System.out.print((i + 1) + ". ");
                 printOneShort(i);
             }
         }
     }
 
-    public static void searchByYearAndString(){
+    public static void searchByYearAndString() {
         System.out.println("Please, enter the combination of characters you are willing to search for: ");
         String stringToSearch = keyboard.nextLine();
         System.out.println("Please, enter the year of publication you are willing to search for: ");
@@ -115,7 +114,7 @@ public class Collection {
         keyboard.nextLine();
         for (int i = 0; i < count; i++) {
             if (arrayOfBooks[i].getYearWhenPublished() == yearToSearch &&
-                    arrayOfBooks[i].getTitle().toLowerCase().contains(stringToSearch.toLowerCase())){
+                    arrayOfBooks[i].getTitle().toLowerCase().contains(stringToSearch.toLowerCase())) {
                 System.out.print((i + 1) + ". ");
                 printOneShort(i);
             }
@@ -126,10 +125,10 @@ public class Collection {
         FileInputStream myFile = new FileInputStream("books.txt");
         Scanner myFileReader = new Scanner(myFile);
 
-        while (myFileReader.hasNextLine()){
+        while (myFileReader.hasNextLine()) {
             String title = myFileReader.nextLine();
             String line = myFileReader.nextLine();
-            String [] words = line.split(" ");
+            String[] words = line.split(" ");
 
             int year = (Integer.parseInt(myFileReader.nextLine()));
             double price = Double.parseDouble(myFileReader.nextLine());
